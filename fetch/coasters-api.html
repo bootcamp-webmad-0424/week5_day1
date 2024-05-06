@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Coasters!</h1>
+
+    <div id="coastersFetched"></div>
+
+    <script>
+
+        fetch('https://multiapi-app.fly.dev/coasters/coastersSelection')
+            .then(response => response.json())
+            .then(coasters => {
+                let code = ''
+                coasters.forEach(elm => code += `<h3>${elm.title}</h3><img src=${elm.imageUrl}><hr>`)
+                document.querySelector('#coastersFetched').innerHTML += code
+            })
+            .catch(() => console.log('NO HAN LLEGADO '))
+
+    </script>
+</body>
+
+</html>
